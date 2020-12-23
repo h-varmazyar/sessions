@@ -147,8 +147,12 @@ func (s *Registry) Get(store Store, name string) (session *Session, err error) {
 // Get registers and returns a session for the given name and session store.
 //
 // It returns a new session if there are no sessions registered for the name.
-func (s *Registry) GetAllSession() (session *map[string]sessionInfo, err error) {
-	return &s.sessions, nil
+func (s *Registry) GetAllSession() (*map[string]*Session, error) {
+	sessions := make(map[string]*Session, len(s.sessions))
+	for key, ses := range s.sessions {
+		sessions[key] = ses.s
+	}
+	return &sessions, nil
 }
 
 // Save saves all sessions registered for the current request.

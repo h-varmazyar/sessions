@@ -77,7 +77,7 @@ func (s *CookieStore) Get(r *http.Request, name string) (*Session, error) {
 	return GetRegistry(r).Get(s, name)
 }
 
-func (s *CookieStore) GetAllSessions(r *http.Request) (*map[string]sessionInfo, error) {
+func (s *CookieStore) GetAllSessions(r *http.Request) (*map[string]*Session, error) {
 	return GetRegistry(r).GetAllSession()
 }
 
