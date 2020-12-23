@@ -77,6 +77,10 @@ func (s *CookieStore) Get(r *http.Request, name string) (*Session, error) {
 	return GetRegistry(r).Get(s, name)
 }
 
+func (s *CookieStore) GetAllSessions(r *http.Request) (*map[string]sessionInfo, error) {
+	return GetRegistry(r).GetAllSession()
+}
+
 // New returns a session for the given name without adding it to the registry.
 //
 // The difference between New() and Get() is that calling New() twice will
